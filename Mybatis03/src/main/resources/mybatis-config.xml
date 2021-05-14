@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+
+    <!--引入外部数据库配置文件-->
+    <properties resource="db.properties">
+           <!--        可以加入配置属性-->
+<!--        <property name="username" value="root"/>-->
+    </properties>
+    <settings>
+<!--        <setting name="logImpl" value="STDOUT_LOGGING"/>-->
+        <setting name="logImpl" value="log4j"/>
+    </settings>
+<!--    给实体类取别名，不需要写类的包名-->
+    <typeAliases>
+<!--        直接将类取别名-->
+<!--        <typeAlias type="com.yuan.pojo.Student" alias="Student"/>-->
+<!--        直接扫描包-->
+        <package name="com.yuan.pojo"/>
+    </typeAliases>
+
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="${driver}"/>
+                <property name="url" value="${url}"/>
+                <property name="username" value="${username}"/>
+                <property name="password" value="${password}"/>
+            </dataSource>
+        </environment>
+<!--        可以了配置多个数据库环境-->
+<!--        <environment id="test">-->
+<!--            <transactionManager type="JDBC"/>-->
+<!--            <dataSource type="POOLED">-->
+<!--                <property name="driver" value="com.mysql.jdbc.Driver"/>-->
+<!--                <property name="url" value="jdbc:mysql://localhost:3306/mybatis?useSSL=false&amp;useUnicode=true&amp;characterEncoding=utf-8"/>-->
+<!--                <property name="username" value="root"/>-->
+<!--                <property name="password" value="root"/>-->
+<!--            </dataSource>-->
+<!--        </environment>-->
+    </environments>
+    <!--每一个mappex.xml-->
+    <mappers>
+        <mapper resource="com/yuan/dao/StudentMapper.xml"></mapper>
+    </mappers>
+
+</configuration>
